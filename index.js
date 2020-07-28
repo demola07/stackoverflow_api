@@ -3,7 +3,12 @@ const express = require('express')
 const morgan = require('morgan')
 const colors = require('colors')
 
+const connectDB = require('./config/db')
+
 const app = express()
+
+//Connect to Database
+connectDB()
 
 // Body Parser
 app.use(express.json())
