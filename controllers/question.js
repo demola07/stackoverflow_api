@@ -11,6 +11,7 @@ exports.createQuestion = async (req, res, next) => {
 
     const data = await newQuestion.save()
     res.status(201).json(data)
+
 }
 
 exports.getQuestions = async (req, res, next) => {

@@ -17,7 +17,7 @@ mongoose.Query.prototype.cache = function (options = {}) {
     return this;
 }
 
-
+// create custom exec function to utilize caching
 mongoose.Query.prototype.exec = async function () {
     if (!this.useCache === false) {
         return exec.apply(this, arguments)
@@ -41,4 +41,10 @@ mongoose.Query.prototype.exec = async function () {
     client.hset(this.hashKey, key, JSON.stringify(result), 'EX', 10)
 
     return result
+}
+
+module.exports = {
+    clearHash(hashKey) {
+        client.del(JSON.stringify(hashKey))
+    }
 }
