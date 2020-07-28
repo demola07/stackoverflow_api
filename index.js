@@ -10,6 +10,10 @@ const app = express()
 //Connect to Database
 connectDB()
 
+// Route files
+const questions = require('./routes/question')
+const answers = require('./routes/answer')
+
 // Body Parser
 app.use(express.json())
 
@@ -17,6 +21,9 @@ app.use(express.json())
 if (process.env.NODE_ENV === 'development') {
     app.use(morgan('dev'))
 }
+
+app.use('/api/v1/questions', questions)
+app.use('/api/v1/answers', answers)
 
 
 const PORT = process.env.PORT || 5000
