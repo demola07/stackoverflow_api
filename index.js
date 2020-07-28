@@ -4,6 +4,7 @@ const morgan = require('morgan')
 const colors = require('colors')
 
 const connectDB = require('./config/db')
+require('./services/cache')
 
 const app = express()
 
