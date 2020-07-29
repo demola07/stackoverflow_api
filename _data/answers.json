@@ -1,0 +1,56 @@
+[
+	{
+		"_id": "5d725a4a7b292f5f8ceff789",
+		"name": "John Doe",
+		"answer": "Elasticsearch is a search engine based on the Lucene library. It provides a distributed, multitenant-capable full-text search engine with an HTTP web interface and schema-free JSON documents. Elasticsearch is developed in Java",
+		"question": "5d713995b721c3bb38c1f5d0"
+	},
+	{
+		"_id": "5d725c84c4ded7bcb480eaa0",
+		"name": "Joe Rogan",
+		"answer": "Elasticsearch is a distributed, open source search and analytics engine for all types of data, including textual, numerical, geospatial, structured, and unstructured",
+		"question": "5d713995b721c3bb38c1f5d0"
+	},
+	{
+		"_id": "5d725cb9c4ded7bcb480eaa1",
+		"name": "Danny Ings",
+		"answer": "The MERN stack is a JavaScript stack that's designed to make the development process smoother",
+		"question": "5d713a66ec8f2b88b8f830b8"
+	},
+	{
+		"_id": "5d725cd2c4ded7bcb480eaa2",
+		"name": "Peter Dury",
+		"answer": "MERN stack is a web development framework. It consists of MongoDB, ExpressJS, ReactJS, and NodeJS as its working components",
+		"question": "5d713a66ec8f2b88b8f830b8"
+	},
+	{
+		"_id": "5d725ce8c4ded7bcb480eaa3",
+		"name": "Salvatore Sanfilippo",
+		"answer": "Redis is an in-memory data structure project implementing a distributed, in-memory key–value database with optional durability. Redis supports different kinds of abstract data structures, such as strings, lists, maps, sets, sorted sets, HyperLogLogs, bitmaps, streams, and spatial indexes",
+		"question": "5d725a037b292f5f8ceff787"
+	},
+	{
+		"_id": "5d725cfec4ded7bcb480eaa4",
+		"name": "David Gutterman",
+		"answer": "Redis is an open source (BSD licensed), in-memory data structure store, used as a database, cache and message broker",
+		"question": "5d725a037b292f5f8ceff787"
+	},
+	{
+		"_id": "5d725cfec4ded7bcb480eaa5",
+		"name": "Andrew Roberts",
+		"answer": "Node.js is an open-source, cross-platform, JavaScript runtime environment that executes JavaScript code outside a web browser.",
+		"question": "5d725a1b7b292f5f8ceff788"
+	},
+	{
+		"_id": "5d725cfec4ded7bcb480eaa6",
+		"name": "Will Smith",
+		"answer": "Node. js is primarily used for non-blocking, event-driven servers, due to its single-threaded nature. It's used for traditional web sites and back-end API services, but was designed with real-time, push-based architectures in mind",
+		"question": "5d725a1b7b292f5f8ceff788"
+	},
+	{
+		"_id": "5d725cfec4ded7bcb480eaa7",
+		"name": "Ryan Dell",
+		"answer": "Node. js is a platform built on Chrome's JavaScript runtime for easily building fast and scalable network applications. Node. js uses an event-driven, non-blocking I/O model that makes it lightweight and efficient, perfect for data-intensive real-time applications that run across distributed devices.",
+		"question": "5d725a1b7b292f5f8ceff788"
+	}
+]
