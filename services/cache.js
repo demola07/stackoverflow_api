@@ -4,15 +4,15 @@ const redis = require('redis')
 
 const redisUrl = 'redis://127.0.0.1:6379'
 const client = redis.createClient(redisUrl)
-client.hget = util.promisify(client.hget)
+client.get = util.promisify(client.get)
 
 // override original mongoose exec function, with ours to use caching
 const exec = mongoose.Query.prototype.exec;
 
 // conditionally use caching
-mongoose.Query.prototype.cache = function (options = {}) {
+mongoose.Query.prototype.cache = function () {
     this.useCache = true
-    this.hashKey = JSON.stringify(options.key || '')
+    // this.hashKey = JSON.stringify(options.key || '')
 
     return this;
 }
@@ -27,7 +27,7 @@ mongoose.Query.prototype.exec = async function () {
         collection: this.mongooseCollection.name
     }));
 
-    const cacheValue = await client.hget(this.hashKey, key)
+    const cacheValue = await client.get(key)
 
     if (cacheValue) {
         const doc = JSON.parse(cacheValue)
@@ -38,13 +38,13 @@ mongoose.Query.prototype.exec = async function () {
     }
 
     const result = await exec.apply(this, arguments)
-    client.hset(this.hashKey, key, JSON.stringify(result), 'EX', 10)
+    client.set(key, JSON.stringify(result), 'EX', 10)
 
     return result
 }
 
-module.exports = {
-    clearHash(hashKey) {
-        client.del(JSON.stringify(hashKey))
-    }
-}
+// module.exports = {
+//     clearHash(hashKey) {
+//         client.del(JSON.stringify(hashKey))
+//     }
+// }
