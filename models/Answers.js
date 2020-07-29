@@ -1,7 +1,6 @@
 const mongoose = require('mongoose')
 const mongoosastic = require('mongoosastic')
 
-
 const Schema = mongoose.Schema
 
 const answerSchema = new Schema({

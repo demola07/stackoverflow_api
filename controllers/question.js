@@ -1,4 +1,5 @@
 const Question = require('../models/Questions')
+const asyncHandler = require('../middleware/async');
 
 Question.createMapping(function (err, mapping) {
     if (err) {
@@ -23,7 +24,7 @@ stream.on('error', function (err) {
 
 
 
-exports.search = (req, res, next) => {
+exports.search = asyncHandler((req, res, next) => {
     if (req.query.q) {
         Question.search({
             query_string: { query: req.query.q }
@@ -35,9 +36,9 @@ exports.search = (req, res, next) => {
             res.status(200).json(data)
         })
     }
-}
+});
 
-exports.createQuestion = async (req, res, next) => {
+exports.createQuestion = asyncHandler(async (req, res, next) => {
     const { name, question } = req.body
 
     const newQuestion = await new Question({
@@ -47,7 +48,7 @@ exports.createQuestion = async (req, res, next) => {
     const data = await newQuestion.save()
     res.status(201).json(data)
 
-}
+});
 
 // exports.getQuestions = async (req, res, next) => {
 //     const data = await Question.find()

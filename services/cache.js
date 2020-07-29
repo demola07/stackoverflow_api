@@ -12,8 +12,6 @@ const exec = mongoose.Query.prototype.exec;
 // conditionally use caching
 mongoose.Query.prototype.cache = function () {
     this.useCache = true
-    // this.hashKey = JSON.stringify(options.key || '')
-
     return this;
 }
 
@@ -42,9 +40,3 @@ mongoose.Query.prototype.exec = async function () {
 
     return result
 }
-
-// module.exports = {
-//     clearHash(hashKey) {
-//         client.del(JSON.stringify(hashKey))
-//     }
-// }

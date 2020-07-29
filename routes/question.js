@@ -12,7 +12,4 @@ router
     .route('/').post(createQuestion)
 
 
-
-
-
 module.exports = router
