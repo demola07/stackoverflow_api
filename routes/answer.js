@@ -2,10 +2,10 @@ const express = require('express')
 
 const router = express.Router()
 
-const { createAnswer, getAnswers } = require('../controllers/answer')
+const { createAnswer, search } = require('../controllers/answer')
 
 router
-    .route('/').get(getAnswers)
+    .route('/search').get(search)
 
 router
     .route('/:questionId').post(createAnswer)

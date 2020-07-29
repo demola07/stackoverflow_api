@@ -1,4 +1,3 @@
-const Answer = require('../models/Answers')
 const Question = require('../models/Questions')
 
 Question.createMapping(function (err, mapping) {
@@ -9,8 +8,8 @@ Question.createMapping(function (err, mapping) {
     console.log(mapping)
 });
 
-var stream = Question.synchronize();
-var count = 0;
+const stream = Question.synchronize();
+let count = 0;
 
 stream.on('data', function () {
     count++;
@@ -22,6 +21,21 @@ stream.on('error', function (err) {
     console.log(err)
 })
 
+
+
+exports.search = (req, res, next) => {
+    if (req.query.q) {
+        Question.search({
+            query_string: { query: req.query.q }
+        }, function (err, results) {
+            if (err) return next(err)
+            const data = results.hits.hits.map(function (hit) {
+                return hit;
+            })
+            res.status(200).json(data)
+        })
+    }
+}
 
 exports.createQuestion = async (req, res, next) => {
     const { name, question } = req.body
@@ -35,9 +49,9 @@ exports.createQuestion = async (req, res, next) => {
 
 }
 
-exports.getQuestions = async (req, res, next) => {
-    const data = await Question.find()
+// exports.getQuestions = async (req, res, next) => {
+//     const data = await Question.find()
 
-    res.status(200).json(data)
+//     res.status(200).json(data)
 
-}
+// }

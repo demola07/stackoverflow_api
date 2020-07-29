@@ -1,4 +1,6 @@
 const mongoose = require('mongoose')
+const mongoosastic = require('mongoosastic')
+
 
 const Schema = mongoose.Schema
 
@@ -18,5 +20,11 @@ const answerSchema = new Schema({
     },
 
 }, { timestamps: true })
+
+answerSchema.plugin(mongoosastic, {
+    hosts: [
+        'localhost:9200'
+    ]
+})
 
 module.exports = mongoose.model('Answer', answerSchema)

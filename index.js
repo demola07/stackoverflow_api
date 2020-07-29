@@ -4,6 +4,7 @@ const morgan = require('morgan')
 const colors = require('colors')
 
 const connectDB = require('./config/db')
+const errorHandler = require('./middleware/error')
 require('./services/cache')
 
 const app = express()
@@ -25,6 +26,8 @@ if (process.env.NODE_ENV === 'development') {
 
 app.use('/api/v1/questions', questions)
 app.use('/api/v1/answers', answers)
+
+app.use(errorHandler)
 
 
 const PORT = process.env.PORT || 5000

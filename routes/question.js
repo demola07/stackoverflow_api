@@ -3,10 +3,15 @@ const express = require('express')
 
 const router = express.Router()
 
-const { createQuestion, getQuestions } = require('../controllers/question')
+const { createQuestion, search, searchQuestions } = require('../controllers/question')
 
 router
-    .route('/').get(getQuestions).post(createQuestion)
+    .route('/search').get(search)
+
+router
+    .route('/').post(createQuestion)
+
+
 
 
 
