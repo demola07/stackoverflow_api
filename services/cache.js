@@ -17,7 +17,8 @@ mongoose.Query.prototype.cache = function () {
 
 // create custom exec function to utilize caching
 mongoose.Query.prototype.exec = async function () {
-    if (!this.useCache === false) {
+    if (this.useCache === false) {
+        console.log('cache reached')
         return exec.apply(this, arguments)
     }
 
@@ -28,15 +29,17 @@ mongoose.Query.prototype.exec = async function () {
     const cacheValue = await client.get(key)
 
     if (cacheValue) {
+        console.log('Using Redis Cache')
         const doc = JSON.parse(cacheValue)
 
         return Array.isArray(doc)
             ? doc.map(d => new this.model(d))
             : new this.model(doc);
+    } else {
+        console.log("using mongodb database")
+        const result = await exec.apply(this, arguments)
+        client.set(key, JSON.stringify(result), 'EX', 10)
+
+        return result
     }
-
-    const result = await exec.apply(this, arguments)
-    client.set(key, JSON.stringify(result), 'EX', 10)
-
-    return result
 }

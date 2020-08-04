@@ -33,7 +33,7 @@ exports.search = asyncHandler((req, res, next) => {
             const data = results.hits.hits.map(function (hit) {
                 return hit;
             })
-            res.status(200).json(data)
+            return res.status(200).json(data)
         })
     }
 });
@@ -46,13 +46,13 @@ exports.createQuestion = asyncHandler(async (req, res, next) => {
     })
 
     const data = await newQuestion.save()
-    res.status(201).json(data)
+    return res.status(201).json(data)
 
 });
 
-// exports.getQuestions = async (req, res, next) => {
-//     const data = await Question.find()
+exports.getQuestions = async (req, res, next) => {
+    const data = await Question.find().cache()
 
-//     res.status(200).json(data)
+    res.status(200).json(data)
 
-// }
+}
